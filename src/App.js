@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import {
   Button,
   Input,
+  Layout,
 } from 'antd';
 
 import Feed from './components/Feed';
 import NewPost from './components/NewPost';
+import SideBar from './components/SideBar';
 
 export default class App extends Component {
   constructor(props) {
@@ -15,8 +17,11 @@ export default class App extends Component {
   render() {
     return (
       <div style={styles.App}>
-    	<NewPost />
-        <Feed />
+      <Layout>
+        <SideBar />
+      </Layout>
+    	{/* <NewPost />
+        <Feed /> */}
       </div>
     );
   };

@@ -19,8 +19,7 @@ export default class PostCell extends React.Component {
 	title={timestamp}
 	extra={userId}
       >
-  <p>{emotion}</p>
-	<p>{text}</p>
+	{text}
       </Card>
     );
   }
