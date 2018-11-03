@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import NewPost from './components/NewPost';
+import SearchBar from './components/SearchBar';
 import {
   Button,
   Input,
@@ -15,6 +16,7 @@ export default class App extends Component {
     return (
       <div style={styles.App}>
 	<NewPost />
+  <SearchBar />
       </div>
     );
   };
