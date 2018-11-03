@@ -26,29 +26,39 @@ firebase.initializeApp(config);
 
 var db = firebase.firestore();
 
-var docRef = db.collection('users').doc('alovelace');
+insert = (text, score, id) => {
 
-var setAda = docRef.set({
-  first: 'Ada',
-  last: 'Lovelace',
-  born: 1815
-});
+  var docRef = db.collection('users').doc('alovelace');
 
-var aTuringRef = db.collection('users').doc('aturing');
-
-var setAlan = aTuringRef.set({
-  'first': 'Alan',
-  'middle': 'Mathison',
-  'last': 'Turing',
-  'born': 1912
-});
-
-db.collection('users').get()
-  .then((snapshot) => {
-    snapshot.forEach((doc) => {
-      console.log(doc.id, '=>', doc.data());
-    });
-  })
-  .catch((err) => {
-    console.log('Error getting documents', err);
+  var setAda = docRef.set({
+    first: 'Ada',
+    last: 'Lovelace',
+    born: 1815
   });
+
+  var aTuringRef = db.collection('users').doc('aturing');
+
+  var setAlan = aTuringRef.set({
+    first: 'Alan',
+    middle: 'Mathison',
+    last: 'Turing',
+    born: 1912
+  });
+
+}
+
+read = (text, score, backref) => {
+  db.collection('users').get()
+    .then((snapshot) => {
+      snapshot.forEach((doc) => {
+        console.log(doc.id, '=>', doc.data());
+      });
+    })
+    .catch((err) => {
+      console.log('Error getting documents', err);
+    });
+}
+
+erase = () => {
+  // erase
+}
