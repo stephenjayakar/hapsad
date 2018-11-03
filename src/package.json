@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "antd": "^3.10.3",
+    "firebase": "^5.5.7",
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
     "react-scripts": "2.1.1"
