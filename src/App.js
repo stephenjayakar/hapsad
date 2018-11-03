@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
+import { Provider } from 'react-redux';
 import {
   Button,
   Input,
+  Icon,
   Layout,
+  Menu,
 } from 'antd';
 
-import Feed from './components/Feed';
-import NewPost from './components/NewPost';
-import SideBar from './components/SideBar';
+import { store } from './configureStore';
+import AppLayout from './components/AppLayout';
+
+const { Content, Sider } = Layout;
 
 export default class App extends Component {
   constructor(props) {
@@ -16,20 +20,17 @@ export default class App extends Component {
 
   render() {
     return (
-      <div style={styles.App}>
-      <Layout>
-        <SideBar />
-      </Layout>
-    	{/* <NewPost />
-        <Feed /> */}
-      </div>
+      <Provider store={store}>
+        <div style={styles.App}>
+          <AppLayout />
+        </div>
+      </Provider>
     );
   };
 }
 
 const styles = {
   App: {
-    marginLeft: 12,
-    maxWidth: 400,
+    maxWidth: 800,
   },
 };
