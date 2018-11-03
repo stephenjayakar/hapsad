@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import NewPost from './components/NewPost';
-import SearchBar from './components/SearchBar';
 import {
   Button,
   Input,
 } from 'antd';
-import HappyPicker from './components/HappyPicker';
+
+import Feed from './components/Feed';
+import NewPost from './components/NewPost';
 
 export default class App extends Component {
   constructor(props) {
@@ -16,7 +16,7 @@ export default class App extends Component {
     return (
       <div style={styles.App}>
 	<NewPost />
-  <SearchBar />
+	<Feed />
       </div>
     );
   };
