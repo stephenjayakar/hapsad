@@ -6,14 +6,14 @@ import {
 export default class HappyPicker extends React.Component {
   render() {
     const onChange = this.props.onChange;
-    
+
     return (
       <div>
 	<Radio.Group onChange={onChange} defaultValue='d'>
-	  <Radio.Button value='a'>Very Sad</Radio.Button>
-	  <Radio.Button value='b'>Kinda Sad</Radio.Button>
-	  <Radio.Button value='c'>Happy</Radio.Button>
-	  <Radio.Button value='d'>Ecstatic</Radio.Button>
+	  <Radio.Button value='a'>😥</Radio.Button>
+	  <Radio.Button value='b'>🙁</Radio.Button>
+	  <Radio.Button value='c'>🙂</Radio.Button>
+	  <Radio.Button value='d'>😁</Radio.Button>
 	</Radio.Group>
       </div>
     );
