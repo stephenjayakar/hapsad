@@ -1,41 +1,28 @@
 import React, { Component } from 'react';
 import NewPost from './components/NewPost';
+import {
+  Button,
+  Input,
+} from 'antd';
+import HappyPicker from './components/HappyPicker';
 
-class App extends Component {
+export default class App extends Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     return (
-      <NewPost />
+      <div style={styles.App}>
+	<NewPost />
+      </div>
     );
-  }
+  };
 }
 
-// class App extends Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       text: ''
-//     };
-//   }
-
-//   textChanged = (event) => {
-//     const value = event.target.value;
-//     this.setState({text: value});
-//   }
-  
-//   render() {
-//     const text = this.state.text;
-//     const textChanged = this.textChanged;
-    
-//     return (
-//       <div>
-// 	<input
-// 	  type="text"
-// 	  onChange={textChanged}
-// 	/>
-// 	<p>{this.state.text}</p>
-//       </div>
-//     );
-//   };
-// }
-
-export default App;
+const styles = {
+  App: {
+    marginLeft: 12,
+    maxWidth: 400,
+  },
+};
