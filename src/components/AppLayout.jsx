@@ -19,6 +19,7 @@ class AppLayout extends React.Component {
   
   render() {
     const menuClick = this.menuClick;
+    const currentPage = this.props.currentPage === 'NewPost' ? <NewPost /> : <Feed />;
     
     return (
       <Layout>
@@ -36,8 +37,7 @@ class AppLayout extends React.Component {
         </Sider>
         <Layout>
           <Content>
-            <NewPost />
-            <Feed />
+            {currentPage}
           </Content>
         </Layout>
       </Layout>
@@ -45,12 +45,15 @@ class AppLayout extends React.Component {
   }
 }
 
+const mapStateToProps = (state) => ({
+  currentPage: state.currentPage,
+});
+
 const mapDispatchToProps = (dispatch) => ({
   changePage: (page) => {
-    console.log(page);
     dispatch({ type: 'CHANGE_PAGE', page });
   }
 });
 
-const withConnect = connect(null, mapDispatchToProps);
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
 export default compose(withConnect)(AppLayout);
