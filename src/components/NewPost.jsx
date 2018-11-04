@@ -10,7 +10,8 @@ class NewPost extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: ''
+      value: '',
+      emotion: '',
     };
   }
 
@@ -21,11 +22,14 @@ class NewPost extends Component {
   
   handleSubmit = (event) => {
     console.log(this.state.value);
+    // TODO: Send to firebase function
   }
 
   // TODO: This should change state
   pickerChanged = (event) => {
     console.log(event.target.value);
+    const emotion = event.target.value;
+    this.setState({ emotion });
   }
 
   render() {
@@ -35,7 +39,7 @@ class NewPost extends Component {
           value={this.state.value}
           onChange={this.handleChange}
         />
-	<HappyPicker onChange={this.pickerChanged}/>
+	      <HappyPicker onChange={this.pickerChanged}/>
         <Button onClick={this.handleSubmit}>Post</Button>
       </div>
     );

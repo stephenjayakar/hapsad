@@ -19,6 +19,7 @@ class AppLayout extends React.Component {
   
   render() {
     const menuClick = this.menuClick;
+    const currentPage = this.props.currentPage === 'NewPost' ? <NewPost /> : <Feed />;
     
     return (
       <Layout>
@@ -36,13 +37,12 @@ class AppLayout extends React.Component {
         </Sider>
         <Layout>
           <Content>
-            <NewPost />
-            <Feed />
             <div>
               <h1>Welcome to My Awesome App</h1>
               <div id="firebaseui-auth-container"></div>
               <div id="loader">Loading...</div>
             </div>
+            {currentPage}
           </Content>
         </Layout>
       </Layout>
@@ -50,12 +50,15 @@ class AppLayout extends React.Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  changePage: (page) => {
-    console.log(page);
-    dispatch({ type: 'CHANGE_PAGE', page });
-  }
+const mapStateToProps = (state) => ({
+  currentPage: state.currentPage,
 });
 
-const withConnect = connect(null, mapDispatchToProps);
+const mapDispatchToProps = (dispatch) => ({
+  changePage: (page) => {
+    dispatch({ type: 'CHANGE_PAGE', page });
+  },
+});
+
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
 export default compose(withConnect)(AppLayout);
