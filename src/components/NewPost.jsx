@@ -7,8 +7,10 @@ import {
 } from 'antd';
 
 import HappyPicker from './HappyPicker';
-
+import Similarities from './Similarities';
 import { insertPost, readUserPosts, readAllPosts } from '../index.js';
+let keywordExtractor = require("keyword-extractor");
+
 
 class NewPost extends Component {
   constructor(props) {
@@ -16,6 +18,7 @@ class NewPost extends Component {
     this.state = {
       value: '',
       emotion: 'd',
+      similarPosts: [],
     };
   }
 
@@ -30,11 +33,18 @@ class NewPost extends Component {
     if (value === '') {
       return;
     }
-    this.setState({ value: "" });
-    insertPost(value, emotion);
+    console.log("AGAGAHGAWHGAHG");
+    const similarPosts = <Similarities value={value} emotion={emotion}/>
+    console.log({similarPosts});
+    this.setState({ value: "", similarPosts });
+    const extractionResult = keywordExtractor.extract(value, {language: 'english',
+                                                              remove_digits: true,
+                                                            return_changed_case: true,
+                                                            remove_duplicates: true,
+                                                            return_chained_words: true} );
+    insertPost(value, emotion, extractionResult);
   }
 
-  // TODO: This should change state
   pickerChanged = (event) => {
     const emotion = event.target.value;
     this.setState({ emotion });
@@ -62,6 +72,7 @@ class NewPost extends Component {
             </Button>
           </Col>
         </Row>
+        {this.state.similarPosts}
       </div>
     );
   }

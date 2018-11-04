@@ -54,7 +54,7 @@ firebase.auth().onAuthStateChanged(function (user) {
 
 const db = firebase.database();
 
-const insertPost = (text, score) => {
+const insertPost = (text, score, keywords) => {
   const userId = firebase.auth().currentUser.uid;
   const name = firebase.auth().currentUser.displayName;
   const timestamp = Date.now();
@@ -64,7 +64,8 @@ const insertPost = (text, score) => {
     name: name,
     text: text,
     score: score,
-    timestamp: timestamp
+    timestamp: timestamp,
+    keywords: keywords,
   };
   const postId = db.ref().child('posts').push().key;
   let updates = {};
