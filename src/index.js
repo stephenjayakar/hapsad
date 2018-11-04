@@ -48,31 +48,45 @@ var uiConfig = {
 };
 ui.start('#firebaseui-auth-container', uiConfig);
 
-var db = firebase.database();
+// var provider = new firebase.auth.GoogleAuthProvider();
+/*
+if (!firebase.auth().currentUser) {
+  firebase.auth().signInWithPopup(provider).then(function(result) {
+    var token = result.credential.accessToken;
+    var user = result.user;
+    console.log(user);
+  }).catch(function(error) {
+    console.log("This should not have happened");
+    console.log(error.email);
+  });
+}
+*/
 
-var insertPost = (text, score) => {
-  var userId = firebase.auth().currentUser.uid;
-  var timestamp = Date.now();
+const db = firebase.database();
 
-  var postData = {
+const insertPost = (text, score) => {
+  const userId = firebase.auth().currentUser.uid;
+  const timestamp = Date.now();
+
+  const postData = {
     userId: userId,
     text: text,
     score: score,
     timestamp: timestamp
   };
-  var postId = db.ref().child('posts').push().key;
-  var updates = {};
+  const postId = db.ref().child('posts').push().key;
+  let updates = {};
 
   updates['/posts/' + postId] = postData;
   updates['/user-posts/' + userId + '/' + postId] = postData;
   db.ref().update(updates);
 }
 
-var readUserPosts = () => {
-  var userId = firebase.auth().currentUser.uid;
-  var ref = db.ref('/user-posts/' + userId).orderByChild('timestamp');
+const readUserPosts = () => {
+  const userId = firebase.auth().currentUser.uid;
+  const ref = db.ref('/user-posts/' + userId).orderByChild('timestamp');
   return ref.once('value').then(function(snapshot) {
-    var posts = [];
+    let posts = [];
     snapshot.forEach(function(childSnapshot) {
       posts.push(childSnapshot.val());
     });
@@ -81,22 +95,17 @@ var readUserPosts = () => {
   });
 }
 
-var readAllPosts = () => {
-  var userId = firebase.auth().currentUser.uid;
-  var ref = db.ref('/posts').orderByChild('timestamp');
+const readAllPosts = () => {
+  const userId = firebase.auth().currentUser.uid;
+  const ref = db.ref('/posts').orderByChild('timestamp');
   return ref.once('value').then(function(snapshot) {
-    var posts = [];
+    let posts = [];
     snapshot.forEach(function(childSnapshot) {
       posts.push(childSnapshot.val());
     });
     console.log(posts);
     return posts;
   });
-}
-
-var nuke = () => {
-  db.remove('posts');
-  db.remove('user-posts');
 }
 
 console.log(firebase.auth().currentUser ? firebase.auth().currentUser.uid : 'no user');
@@ -107,3 +116,5 @@ console.log(firebase.auth().currentUser ? firebase.auth().currentUser.uid : 'no 
 // insertPost("dave", "I am sadder", 0);
 // readAllPosts();
 // readUserPosts("wince");
+
+export {insertPost, readUserPosts, readAllPosts}

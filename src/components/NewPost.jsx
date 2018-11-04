@@ -6,6 +6,8 @@ import {
 
 import HappyPicker from './HappyPicker';
 
+import {insertPost, readUserPosts, readAllPosts} from '../index.js';
+
 class NewPost extends Component {
   constructor(props) {
     super(props);
@@ -22,6 +24,7 @@ class NewPost extends Component {
   
   handleSubmit = (event) => {
     console.log(this.state.value);
+    insertPost(this.state.value, this.state.emotion);
     // TODO: Send to firebase function
   }
 
