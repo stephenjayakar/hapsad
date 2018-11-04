@@ -51,7 +51,7 @@ class AppLayout extends React.Component {
           </Menu>
         </Sider>
         <Layout>
-          <Content style={{ marginLeft: 210}}>
+          <Content style={{ marginLeft: 210 }}>
             <div id="firebaseui-auth-container"></div>
             <div id="loader">Loading...</div>
             {currentPage}
