@@ -15,10 +15,10 @@ export default class HappyPicker extends React.Component {
 	  defaultValue='d'
 	  size="large"
 	>
-	  <Radio.Button value='a'>Very Sad</Radio.Button>
-	  <Radio.Button value='b'>Sad</Radio.Button>
-	  <Radio.Button value='c'>Happy</Radio.Button>
-	  <Radio.Button value='d'>Very Happy</Radio.Button>
+	  <Radio.Button value='a'>{'😭'}</Radio.Button>
+	  <Radio.Button value='b'>{'😞'}</Radio.Button>
+	  <Radio.Button value='c'>{'🙂'}</Radio.Button>
+	  <Radio.Button value='d'>{'😁'}</Radio.Button>
 	</Radio.Group>
       </div>
     );
@@ -38,6 +38,6 @@ class RadioButton extends React.Component {
 
 const styles = {
   button: {
-    fontSize: 30,
+    fontSize: 40,
   },
 };
