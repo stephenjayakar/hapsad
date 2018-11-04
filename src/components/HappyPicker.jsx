@@ -15,8 +15,8 @@ export default class HappyPicker extends React.Component {
 	  defaultValue='d'
 	  size="large"
 	>
-	  <Radio.Button value='a'>{'😭'}</Radio.Button>
-	  <Radio.Button value='b'>{'😞'}</Radio.Button>
+	  <Radio.Button value='a'>{'😢'}</Radio.Button>
+	  <Radio.Button value='b'>{'🙁'}</Radio.Button>
 	  <Radio.Button value='c'>{'🙂'}</Radio.Button>
 	  <Radio.Button value='d'>{'😁'}</Radio.Button>
 	</Radio.Group>

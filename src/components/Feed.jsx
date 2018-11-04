@@ -81,9 +81,9 @@ class Feed extends React.Component {
 const scoreToEmoji = (score) => {
 	switch (score) {
 		case 'a':
-			return '😭';
+			return '😢';
 		case 'b':
-			return '😞';
+			return '🙁';
 		case 'c':
 			return '🙂';
 		case 'd':

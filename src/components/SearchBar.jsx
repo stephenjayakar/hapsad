@@ -39,10 +39,10 @@ class SearchBar extends Component {
     const menu = (
       <Menu onClick={this.dropdownHandle}>
         <Menu.Item key="All">All</Menu.Item>
-        <Menu.Item key="Very Happy">Very Happy</Menu.Item>
-        <Menu.Item key="Happy">Happy</Menu.Item>
-        <Menu.Item key="Sad">Sad</Menu.Item>
-        <Menu.Item key="Very Sad">Very Sad</Menu.Item>
+        <Menu.Item key="Very Happy">😁</Menu.Item>
+        <Menu.Item key="Happy">🙂</Menu.Item>
+        <Menu.Item key="Sad">🙁</Menu.Item>
+        <Menu.Item key="Very Sad">😢</Menu.Item>
       </Menu>
     );
 

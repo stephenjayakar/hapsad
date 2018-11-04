@@ -42,10 +42,11 @@ class NewPost extends Component {
 
   render() {
     return (
-      <div>
+      <div style={styles.page}>
         <Input.TextArea
           value={this.state.value}
           onChange={this.handleChange}
+          placeholder="What's on your mind?"
         />
         <Row>
           <Col xs={{ span: 19 }}>
@@ -65,5 +66,11 @@ class NewPost extends Component {
     );
   }
 }
+
+const styles = {
+	page: {
+		marginTop: 20,
+	},
+};
 
 export default NewPost;
