@@ -52,7 +52,7 @@ const scoreToEmoji = (score) => {
 		case 'c':
 			return '🙂';
 		case 'd':
-		  return '🙂';
+		  return '😁';
 		default:
 		  return score;
 	}	

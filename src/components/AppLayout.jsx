@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  Button,
   Icon,
   Layout,
   Menu,
@@ -38,8 +39,7 @@ class AppLayout extends React.Component {
         <Layout>
           <Content>
             <div>
-              <h1>Welcome to My Awesome App</h1>
-              <div id="firebaseui-auth-container"></div>
+              <div style={{height: 30}} id="firebaseui-auth-container"></div>
               <div id="loader">Loading...</div>
             </div>
             {currentPage}

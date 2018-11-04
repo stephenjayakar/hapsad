@@ -16,11 +16,10 @@ export default class PostCell extends React.Component {
     const { text, userId, timestamp, emotion } = this.props;
     return (
       <Card
-	title={timestamp}
-	extra={userId}
+        title={emotion + ' ' + userId}
+        extra={timestamp}
       >
-  <p>{emotion}</p>
-	<p>{text}</p>
+        <p>{text}</p>
       </Card>
     );
   }

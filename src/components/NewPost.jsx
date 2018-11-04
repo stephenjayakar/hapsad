@@ -13,7 +13,7 @@ class NewPost extends Component {
     super(props);
     this.state = {
       value: '',
-      emotion: '',
+      emotion: 'd',
     };
   }
 
@@ -30,7 +30,6 @@ class NewPost extends Component {
 
   // TODO: This should change state
   pickerChanged = (event) => {
-    console.log(event.target.value);
     const emotion = event.target.value;
     this.setState({ emotion });
   }
