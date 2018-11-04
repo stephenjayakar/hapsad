@@ -12,20 +12,36 @@ class Feed extends React.Component {
 		super(props);
 
 		this.state = {
-			posts: []
+			posts: [],
+			dropdownState: "All",
 		};
 
 		readAllPosts().then((posts) => {
-			this.setState({posts});
+			this.setState({ posts });
 		});
 	}
+
+	postStates = {
+		"Very Sad": "a",
+		"Sad": "b",
+		"Happy": "c",
+		"Very Happy": "d",
+		"All": "e"
+	};
+
+	updateDropdownState = (dropdownState) => {
+		this.setState({ dropdownState });
+	}
+
 	render() {
 		const posts = this.state.posts;
-		
+		const dropdownState = this.state.dropdownState;
 		return (
 			<div>
-				<SearchBar />
-				{posts.map((post) => (
+				<SearchBar updateDropdownState={this.updateDropdownState} />
+				{posts.filter((post) => {
+					return (post.score === this.postStates[dropdownState] || dropdownState == "All");
+				}).map((post) => (
 					<PostCell
 						text={post.text}
 						userId={post.name}
@@ -47,10 +63,10 @@ const scoreToEmoji = (score) => {
 		case 'c':
 			return '🙂';
 		case 'd':
-		  return '😁';
+			return '😁';
 		default:
-		  return score;
-	}	
+			return score;
+	}
 }
 
 const mapStateToProps = (state) => ({

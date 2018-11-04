@@ -14,6 +14,7 @@ class SearchBar extends Component {
     this.state = {
       value: '',
       feeling: '',
+      dropdownState: 'All',
     };
   }
 
@@ -28,24 +29,19 @@ class SearchBar extends Component {
     console.log(event.target.value);
   }
 
+  dropdownHandle = ({key}) => {
+    this.setState({ dropdownState: key });
+    this.props.updateDropdownState(key);
+  }
+
   render() {
     const menu = (
-      <Menu>
-        <Menu.Item>
-          All
-        </Menu.Item>
-        <Menu.Item>
-          Very Happy
-        </Menu.Item>
-        <Menu.Item>
-          Happy
-        </Menu.Item>
-        <Menu.Item>
-          Sad
-        </Menu.Item>
-        <Menu.Item>
-          Very Sad
-        </Menu.Item>
+      <Menu onClick={this.dropdownHandle}>
+        <Menu.Item key="All">All</Menu.Item>
+        <Menu.Item key="Very Happy">Very Happy</Menu.Item>
+        <Menu.Item key="Happy">Happy</Menu.Item>
+        <Menu.Item key="Sad">Sad</Menu.Item>
+        <Menu.Item key="Very Sad">Very Sad</Menu.Item>
       </Menu>
     );
 
@@ -56,7 +52,7 @@ class SearchBar extends Component {
           onChange={this.handleChange}
         />
 	      <Dropdown overlay={menu}><a className="ant-dropdown-link" href="#">
-      Mood <Icon type="down" />
+      {this.state.dropdownState} <Icon type="down" />
     </a></Dropdown>
       </div>
     );
