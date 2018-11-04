@@ -33,16 +33,13 @@ class NewPost extends Component {
     if (value === '') {
       return;
     }
-    console.log("AGAGAHGAWHGAHG");
     const similarPosts = <Similarities value={value} emotion={emotion} />
-    console.log({ similarPosts });
     this.setState({ value: "", similarPosts });
     const extractionResult = keywordExtractor.extract(value, {
       language: 'english',
       remove_digits: true,
       return_changed_case: true,
       remove_duplicates: true,
-      return_chained_words: true
     });
     insertPost(value, emotion, extractionResult);
   }
@@ -59,6 +56,7 @@ class NewPost extends Component {
           value={this.state.value}
           onChange={this.handleChange}
           placeholder="What's on your mind?"
+          rows={5}
         />
         <Row>
           <Col xs={{ span: 19 }}>

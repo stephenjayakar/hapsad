@@ -25,14 +25,14 @@ class Similarities extends React.Component {
     const emotion = this.props.emotion;
     const value = this.props.value;
     const results = posts.filter((post) => {
-      return (post.score === emotion);
+      return ((post.score.charCodeAt(0) <= 'b'.charCodeAt(0) && emotion.charCodeAt(0) <= 'b'.charCodeAt(0))
+              || (post.score.charCodeAt(0) >= 'c'.charCodeAt(0) && emotion.charCodeAt(0) >= 'c'.charCodeAt(0)));
     }).filter((post) => {
       const keywords = keywordExtractor.extract(value, {
         language: 'english',
         remove_digits: true,
         return_changed_case: true,
         remove_duplicates: true,
-        return_chained_words: true
       });
       let matches = 0;
       let i;
@@ -43,6 +43,8 @@ class Similarities extends React.Component {
         }
       }
       return (matches >= keywords.length / 2);
+    }).filter((post) => {
+      return (value != post.text);
     }).map((post) => (
       <PostCell
         text={post.text}

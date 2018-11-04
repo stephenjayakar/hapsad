@@ -4,6 +4,7 @@ import {
   Icon,
   Layout,
   Menu,
+  Avatar,
 } from 'antd';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
@@ -48,6 +49,7 @@ class AppLayout extends React.Component {
               <Icon type="user" />
               <span>Your Profile</span>
             </Menu.Item>
+            <img style={{ position: "absolute", paddingLeft: 30, bottom: 25 }} src={"https://live.calhacks.io/assets/images/home_1.png"}/>
           </Menu>
         </Sider>
         <Layout>
