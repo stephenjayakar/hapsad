@@ -34,14 +34,16 @@ class NewPost extends Component {
       return;
     }
     console.log("AGAGAHGAWHGAHG");
-    const similarPosts = <Similarities value={value} emotion={emotion}/>
-    console.log({similarPosts});
+    const similarPosts = <Similarities value={value} emotion={emotion} />
+    console.log({ similarPosts });
     this.setState({ value: "", similarPosts });
-    const extractionResult = keywordExtractor.extract(value, {language: 'english',
-                                                              remove_digits: true,
-                                                            return_changed_case: true,
-                                                            remove_duplicates: true,
-                                                            return_chained_words: true} );
+    const extractionResult = keywordExtractor.extract(value, {
+      language: 'english',
+      remove_digits: true,
+      return_changed_case: true,
+      remove_duplicates: true,
+      return_chained_words: true
+    });
     insertPost(value, emotion, extractionResult);
   }
 
@@ -79,9 +81,9 @@ class NewPost extends Component {
 }
 
 const styles = {
-	page: {
-		marginTop: 20,
-	},
+  page: {
+    marginTop: 20,
+  },
 };
 
 export default NewPost;

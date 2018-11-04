@@ -29,10 +29,10 @@ var ui = new firebaseui.auth.AuthUI(firebase.auth());
 
 var uiConfig = {
   callbacks: {
-    signInSuccessWithAuthResult: function(authResult, redirectUrl) {
+    signInSuccessWithAuthResult: function (authResult, redirectUrl) {
       return true;
     },
-    uiShown: function() {
+    uiShown: function () {
       document.getElementById('loader').style.display = 'none';
     }
   },
@@ -47,9 +47,9 @@ ui.start('#firebaseui-auth-container', uiConfig);
 firebase.auth().onAuthStateChanged(function (user) {
   if (user) {
     user.getIdToken().then(function (accessToken) {
-        document.getElementById('firebaseui-auth-container').hidden=true;
-     });
-   }
+      document.getElementById('firebaseui-auth-container').hidden = true;
+    });
+  }
 });
 
 const db = firebase.database();
@@ -78,9 +78,9 @@ const insertPost = (text, score, keywords) => {
 const readUserPosts = () => {
   const userId = firebase.auth().currentUser.uid;
   const ref = db.ref('/user-posts/' + userId).orderByChild('timestamp');
-  return ref.once('value').then(function(snapshot) {
+  return ref.once('value').then(function (snapshot) {
     let posts = [];
-      snapshot.forEach(function(childSnapshot) {
+    snapshot.forEach(function (childSnapshot) {
       posts.push(childSnapshot.val());
     });
     console.log(posts);
@@ -90,9 +90,9 @@ const readUserPosts = () => {
 
 const readAllPosts = () => {
   const ref = db.ref('/posts').orderByChild('timestamp');
-  return ref.once('value').then(function(snapshot) {
+  return ref.once('value').then(function (snapshot) {
     let posts = [];
-    snapshot.forEach(function(childSnapshot) {
+    snapshot.forEach(function (childSnapshot) {
       posts.push(childSnapshot.val());
     });
     console.log(posts);

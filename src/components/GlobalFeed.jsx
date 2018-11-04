@@ -3,21 +3,21 @@ import React from 'react';
 import Feed from './Feed';
 
 export default class GlobalProfile extends React.Component {
-	constructor(props) {
-        super(props);
+  constructor(props) {
+    super(props);
 
-		this.state = {
-		};
-	}
+    this.state = {
+    };
+  }
 
-	render() {
-		return (
-			<Feed scope="global" />
-		);
-	}
+  render() {
+    return (
+      <Feed scope="global" />
+    );
+  }
 }
 const styles = {
-	page: {
-		marginTop: 20,
-	},
+  page: {
+    marginTop: 20,
+  },
 };

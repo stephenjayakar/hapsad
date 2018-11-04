@@ -48,31 +48,33 @@ class Feed extends React.Component {
 	render() {
 		const posts = this.state.posts;
 		const dropdownState = this.state.dropdownState;
+		const results = posts.filter((post) => {
+			let yikes = false;
+			if (this.state.words.length > 0) {
+				console.log('yikes');
+				this.state.words.map((word) => {
+					yikes |= post.text.toUpperCase().includes(word.toUpperCase());
+				})
+			} else {
+				yikes = true;
+			}
+			return (yikes && (post.score === this.postStates[dropdownState] || dropdownState == "All"));
+		}).map((post) => (
+			<PostCell
+				text={post.text}
+				userId={post.name}
+				timestamp={<TimeAgo datetime={post.timestamp} />}
+				emotion={scoreToEmoji(post.score)}
+			/>
+		));
 		return (
 			<div style={styles.page}>
 				<SearchBar
 					updateDropdownState={this.updateDropdownState}
 					updateTextQuery={this.updateTextQuery}
 				/>
-				{posts.filter((post) => {
-					let yikes = false;
-					if (this.state.words.length > 0) {
-						console.log('yikes');
-						this.state.words.map((word) => {
-							yikes |= post.text.toUpperCase().includes(word.toUpperCase());
-						})
-					} else {
-						yikes = true;
-					}
-					return (yikes && (post.score === this.postStates[dropdownState] || dropdownState == "All"));
-				}).map((post) => (
-					<PostCell
-						text={post.text}
-						userId={post.name}
-						timestamp={<TimeAgo datetime={post.timestamp} />}
-						emotion={scoreToEmoji(post.score)}
-					/>
-				))}
+				<p>Showing {results.length} results</p>
+				{results}
 			</div>
 		);
 	}
