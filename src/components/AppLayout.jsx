@@ -21,7 +21,7 @@ class AppLayout extends React.Component {
   render() {
     const menuClick = this.menuClick;
     const currentPage = this.props.currentPage === 'NewPost' ? <NewPost /> : <Feed />;
-    
+
     return (
       <Layout>
         <Sider style={{ overflow: 'auto', height: '100vh', background: '#ffff'}}>
@@ -38,10 +38,8 @@ class AppLayout extends React.Component {
         </Sider>
         <Layout>
           <Content>
-            <div>
-              <div style={{height: 30}} id="firebaseui-auth-container"></div>
-              <div id="loader">Loading...</div>
-            </div>
+            <div id="firebaseui-auth-container"></div>
+            <div id="loader">Loading...</div>
             {currentPage}
           </Content>
         </Layout>
