@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import {
   Button,
   Input,
+  Row,
+  Col,
 } from 'antd';
 
 import HappyPicker from './HappyPicker';
 
-import {insertPost, readUserPosts, readAllPosts} from '../index.js';
+import { insertPost, readUserPosts, readAllPosts } from '../index.js';
 
 class NewPost extends Component {
   constructor(props) {
@@ -23,9 +25,13 @@ class NewPost extends Component {
   }
 
   handleSubmit = (event) => {
-    console.log(this.state.value);
+    let { value, emotion } = this.state;
+    value = value.trim();
+    if (value === '') {
+      return;
+    }
     this.setState({ value: "" });
-    insertPost(this.state.value, this.state.emotion);
+    insertPost(value, emotion);
   }
 
   // TODO: This should change state
@@ -41,8 +47,20 @@ class NewPost extends Component {
           value={this.state.value}
           onChange={this.handleChange}
         />
-	      <HappyPicker onChange={this.pickerChanged}/>
-        <Button onClick={this.handleSubmit}>Post</Button>
+        <Row>
+          <Col xs={{ span: 19 }}>
+            <HappyPicker onChange={this.pickerChanged} />
+          </Col>
+          <Col xs={{ span: 5 }}>
+            <Button
+              onClick={this.handleSubmit}
+              type="primary"
+              style={{ position: 'absolute', right: 8, top: 4 }}
+            >
+              Post
+            </Button>
+          </Col>
+        </Row>
       </div>
     );
   }

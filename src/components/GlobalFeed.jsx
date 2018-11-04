@@ -5,7 +5,7 @@ import Feed from './Feed';
 export default class GlobalProfile extends React.Component {
 	constructor(props) {
         super(props);
-        
+
 		this.state = {
 		};
 	}
