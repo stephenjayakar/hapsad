@@ -21,6 +21,7 @@ class SearchBar extends Component {
   handleChange = (event) => {
     const value = event.target.value;
     this.setState({ value });
+    this.props.updateTextQuery(value);
   }
 
   pickerChanged = (event) => {
@@ -47,7 +48,7 @@ class SearchBar extends Component {
 
     return (
       <div>
-        <Input
+        <Input.Search
           value={this.state.value}
           onChange={this.handleChange}
         />

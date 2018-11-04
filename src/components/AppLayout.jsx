@@ -17,7 +17,7 @@ class AppLayout extends React.Component {
   menuClick = (item) => {
     this.props.changePage(item.key);
   }
-  
+
   render() {
     const menuClick = this.menuClick;
     const currentPage = this.props.currentPage === 'NewPost' ? <NewPost /> : <Feed />;

@@ -14,6 +14,7 @@ class Feed extends React.Component {
 		this.state = {
 			posts: [],
 			dropdownState: "All",
+			words: [],
 		};
 
 		readAllPosts().then((posts) => {
@@ -33,14 +34,31 @@ class Feed extends React.Component {
 		this.setState({ dropdownState });
 	}
 
+	updateTextQuery = (text) => {
+		const words = text.trim().split(' ');
+		this.setState({ words })
+	}
+
 	render() {
 		const posts = this.state.posts;
 		const dropdownState = this.state.dropdownState;
 		return (
-			<div>
-				<SearchBar updateDropdownState={this.updateDropdownState} />
+			<div style={styles.page}>
+				<SearchBar
+					updateDropdownState={this.updateDropdownState}
+					updateTextQuery={this.updateTextQuery}
+				/>
 				{posts.filter((post) => {
-					return (post.score === this.postStates[dropdownState] || dropdownState == "All");
+					let yikes = false;
+					if (this.state.words.length > 0) {
+						console.log('yikes');
+						this.state.words.map((word) => {
+							yikes |= post.text.toUpperCase().includes(word.toUpperCase());
+						})
+					} else {
+						yikes = true;
+					}
+					return (yikes && (post.score === this.postStates[dropdownState] || dropdownState == "All"));
 				}).map((post) => (
 					<PostCell
 						text={post.text}
@@ -68,6 +86,12 @@ const scoreToEmoji = (score) => {
 			return score;
 	}
 }
+
+const styles = {
+	page: {
+		marginTop: 20,
+	},
+};
 
 const mapStateToProps = (state) => ({
 	posts: state.posts,

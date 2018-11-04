@@ -21,7 +21,7 @@ class NewPost extends Component {
     const value = event.target.value;
     this.setState({ value });
   }
-  
+
   handleSubmit = (event) => {
     console.log(this.state.value);
     insertPost(this.state.value, this.state.emotion);
