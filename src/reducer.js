@@ -1,5 +1,6 @@
 const defaultState = {
   currentPage: 'NewPost',
+  posts: [],
 };
 
 const reducer = (state=defaultState, action) => {

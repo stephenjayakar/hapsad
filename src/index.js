@@ -117,4 +117,4 @@ console.log(firebase.auth().currentUser ? firebase.auth().currentUser.uid : 'no 
 // readAllPosts();
 // readUserPosts("wince");
 
-export {insertPost, readUserPosts, readAllPosts}
+export { insertPost, readUserPosts, readAllPosts }
