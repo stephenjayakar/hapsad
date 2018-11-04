@@ -52,7 +52,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   changePage: (page) => {
     dispatch({ type: 'CHANGE_PAGE', page });
-  }
+  },
 });
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
