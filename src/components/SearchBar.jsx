@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import {
+  Icon,
   Input,
+  Menu,
+  Dropdown,
 } from 'antd';
 
 import HappyPicker from './HappyPicker';
@@ -26,13 +29,35 @@ class SearchBar extends Component {
   }
 
   render() {
+    const menu = (
+      <Menu>
+        <Menu.Item>
+          All
+        </Menu.Item>
+        <Menu.Item>
+          Very Happy
+        </Menu.Item>
+        <Menu.Item>
+          Happy
+        </Menu.Item>
+        <Menu.Item>
+          Sad
+        </Menu.Item>
+        <Menu.Item>
+          Very Sad
+        </Menu.Item>
+      </Menu>
+    );
+
     return (
       <div>
         <Input
           value={this.state.value}
           onChange={this.handleChange}
         />
-	    <HappyPicker onChange={this.pickerChanged} />
+	      <Dropdown overlay={menu}><a className="ant-dropdown-link" href="#">
+      Mood <Icon type="down" />
+    </a></Dropdown>
       </div>
     );
   }

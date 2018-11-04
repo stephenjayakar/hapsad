@@ -1,16 +1,11 @@
 import React from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import TimeAgo from 'javascript-time-ago';
-import en from 'javascript-time-ago/locale/en';
+import TimeAgo from 'timeago-react';
 
 import PostCell from './PostCell';
 import SearchBar from './SearchBar';
 import { readAllPosts } from '../index';
-
-TimeAgo.locale(en);
-
-const timeAgo = new TimeAgo('en-US');
 
 class Feed extends React.Component {
 	constructor(props) {
@@ -34,7 +29,7 @@ class Feed extends React.Component {
 					<PostCell
 						text={post.text}
 						userId={post.name}
-						timestamp={timeAgo.format(post.timestamp)}
+						timestamp={<TimeAgo datetime={post.timestamp} />}
 						emotion={scoreToEmoji(post.score)}
 					/>
 				))}
