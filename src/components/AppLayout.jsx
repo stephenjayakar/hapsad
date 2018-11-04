@@ -8,7 +8,8 @@ import {
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 
-import Feed from './Feed';
+import GlobalFeed from './GlobalFeed';
+import UserProfile from './UserProfile';
 import NewPost from './NewPost';
 
 const { Content, Sider } = Layout;
@@ -20,24 +21,37 @@ class AppLayout extends React.Component {
 
   render() {
     const menuClick = this.menuClick;
-    const currentPage = this.props.currentPage === 'NewPost' ? <NewPost /> : <Feed />;
+    const currentPage = ((pageType) => {
+      switch(pageType) {
+        case 'NewPost':
+          return <NewPost />;
+        case 'GlobalFeed':
+          return <GlobalFeed />;
+        case 'UserProfile':
+          return <UserProfile />;
+      }
+    })(this.props.currentPage);
 
     return (
       <Layout>
-        <Sider style={{ overflow: 'auto', height: '100vh', background: '#ffff'}}>
+        <Sider style={{ overflow: 'auto', height: '100vh', background: '#ffff', position: 'fixed' }}>
           <Menu theme="light" mode="inline" defaultSelectedKeys={['4']} onClick={menuClick}>
             <Menu.Item key="NewPost">
               <Icon type="form" />
               <span>New Post</span>
             </Menu.Item>
-            <Menu.Item key="Feed">
+            <Menu.Item key="GlobalFeed">
               <Icon type="global" />
-              <span>Feed</span>
+              <span>Global Feed</span>
+            </Menu.Item>
+            <Menu.Item key="UserProfile">
+              <Icon type="user" />
+              <span>Your Profile</span>
             </Menu.Item>
           </Menu>
         </Sider>
         <Layout>
-          <Content>
+          <Content style={{ marginLeft: 210}}>
             <div id="firebaseui-auth-container"></div>
             <div id="loader">Loading...</div>
             {currentPage}

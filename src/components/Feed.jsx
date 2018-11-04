@@ -5,7 +5,7 @@ import TimeAgo from 'timeago-react';
 
 import PostCell from './PostCell';
 import SearchBar from './SearchBar';
-import { readAllPosts } from '../index';
+import { readAllPosts, readUserPosts } from '../index';
 
 class Feed extends React.Component {
 	constructor(props) {
@@ -17,9 +17,15 @@ class Feed extends React.Component {
 			words: [],
 		};
 
-		readAllPosts().then((posts) => {
-			this.setState({ posts });
-		});
+		if (this.props.scope == "global") {
+			readAllPosts().then((posts) => {
+				this.setState({ posts });
+			});
+		} else {
+			readUserPosts().then((posts) => {
+				this.setState({ posts });
+			});
+		}
 	}
 
 	postStates = {
