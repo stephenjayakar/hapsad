@@ -30,10 +30,6 @@ var ui = new firebaseui.auth.AuthUI(firebase.auth());
 var uiConfig = {
   callbacks: {
     signInSuccessWithAuthResult: function(authResult, redirectUrl) {
-      // User successfully signed in.
-      // Return type determines whether we continue the redirect automatically
-      // or whether we leave that to developer to handle.
-      console.log("allahuakbar")
       return true;
     },
     uiShown: function() {
@@ -48,28 +44,16 @@ var uiConfig = {
 };
 ui.start('#firebaseui-auth-container', uiConfig);
 
-// var provider = new firebase.auth.GoogleAuthProvider();
-/*
-if (!firebase.auth().currentUser) {
-  firebase.auth().signInWithPopup(provider).then(function(result) {
-    var token = result.credential.accessToken;
-    var user = result.user;
-    console.log(user);
-  }).catch(function(error) {
-    console.log("This should not have happened");
-    console.log(error.email);
-  });
-}
-*/
-
 const db = firebase.database();
 
 const insertPost = (text, score) => {
   const userId = firebase.auth().currentUser.uid;
+  const name = firebase.auth().currentUser.displayName;
   const timestamp = Date.now();
 
   const postData = {
     userId: userId,
+    name: name,
     text: text,
     score: score,
     timestamp: timestamp
@@ -91,7 +75,7 @@ const readUserPosts = () => {
       posts.push(childSnapshot.val());
     });
     console.log(posts);
-    return posts;
+    return posts.reverse();
   });
 }
 
@@ -104,17 +88,8 @@ const readAllPosts = () => {
       posts.push(childSnapshot.val());
     });
     console.log(posts);
-    return posts;
+    return posts.reverse();
   });
 }
-
-console.log(firebase.auth().currentUser ? firebase.auth().currentUser.uid : 'no user');
-
-// nuke();
-// insertPost("I am sad", 1);
-// insertPost("I am happy", 3);
-// insertPost("dave", "I am sadder", 0);
-// readAllPosts();
-// readUserPosts("wince");
 
 export { insertPost, readUserPosts, readAllPosts }
