@@ -37,7 +37,6 @@ class Similarities extends React.Component {
       let matches = 0;
       let i;
       for (i in keywords) {
-        console.log(keywords[i], post.keywords);
         if (post.keywords != undefined && post.keywords.includes(keywords[i])) {
           matches += 1;
         }

@@ -27,7 +27,6 @@ class SearchBar extends Component {
   pickerChanged = (event) => {
     const feeling = event.target.value;
     this.setState({ feeling });
-    console.log(event.target.value);
   }
 
   dropdownHandle = ({key}) => {

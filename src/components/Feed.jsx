@@ -49,16 +49,15 @@ class Feed extends React.Component {
 		const posts = this.state.posts;
 		const dropdownState = this.state.dropdownState;
 		const results = posts.filter((post) => {
-			let yikes = false;
+			let found = false;
 			if (this.state.words.length > 0) {
-				console.log('yikes');
 				this.state.words.map((word) => {
-					yikes |= post.text.toUpperCase().includes(word.toUpperCase());
+					found |= post.text.toUpperCase().includes(word.toUpperCase());
 				})
 			} else {
-				yikes = true;
+				found = true;
 			}
-			return (yikes && (post.score === this.postStates[dropdownState] || dropdownState == "All"));
+			return (found && (post.score === this.postStates[dropdownState] || dropdownState == "All"));
 		}).map((post) => (
 			<PostCell
 				text={post.text}
