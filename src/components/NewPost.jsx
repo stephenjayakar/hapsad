@@ -24,8 +24,8 @@ class NewPost extends Component {
 
   handleSubmit = (event) => {
     console.log(this.state.value);
+    this.setState({ value: "" });
     insertPost(this.state.value, this.state.emotion);
-    // TODO: Send to firebase function
   }
 
   // TODO: This should change state
